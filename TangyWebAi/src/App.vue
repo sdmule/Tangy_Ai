@@ -1,47 +1,14 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div class="min-h-screen bg-[#f8f2e8]">
+    <header class="border-b border-[#d9c9b4] bg-[#fffaf2]/90">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 lg:px-8">
+        <RouterLink to="/" class="text-2xl font-bold tracking-tight text-[#7d2d21]">Tangy</RouterLink>
+        <nav class="flex items-center gap-5 text-sm font-semibold text-[#684b39]">
+          <RouterLink to="/" class="transition hover:text-[#b4532f]">Menu</RouterLink>
+          <RouterLink to="/admin" class="transition hover:text-[#b4532f]">Manage</RouterLink>
+        </nav>
+      </div>
+    </header>
+    <RouterView />
+  </div>
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>

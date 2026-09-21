@@ -1,42 +1,57 @@
-# TangyWebAi
+# Tangy Restaurant Website
 
-This template should help get you started developing with Vue 3 in Vite.
+A Vue 3 restaurant menu and management workspace using Firebase Firestore.
 
-## Recommended IDE Setup
+## Stack
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- Vue 3, TypeScript, Vite, and Vue Router
+- Tailwind CSS with custom restaurant styling
+- Firebase Firestore
+- Lucide Vue icons
+- Vitest and Vue Test Utils
 
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
+## Setup
 
 ```sh
 npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
+copy .env.example .env.local
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+Fill `.env.local` with a Firebase web app configuration. Set `VITE_USE_FIREBASE_EMULATOR=true` to connect Firestore to the local emulator on port `8080`.
+
+The public menu is available at `/`. The management page is available at `/admin` and is intentionally unprotected during this phase.
+
+## Firebase Emulator
+
+Install the Firebase CLI separately, then run:
 
 ```sh
-npm run build
+firebase emulators:start --only firestore
 ```
+
+With the emulator running in another terminal, seed the local collections with:
+
+```sh
+npm run seed:emulator
+```
+
+The checked-in `firestore.rules` file allows public reads and requires an authenticated user for writes. Production unauthenticated writes must never be enabled. Add authentication and authorization in a later phase before enabling deployed admin writes.
+
+The repeatable local seed data is at `scripts/seed-data.json`. The seed script uses the Admin SDK only against the local emulator; it is not a production seed command and does not contain credentials.
+
+## Commands
+
+```sh
+npm run dev
+npm run type-check
+npm test
+npm run build
+npm run format
+```
+
+## Data model
+
+`categories` stores `name`, a normalized name key for duplicate detection, and timestamps. `products` stores `name`, `description`, `price`, `imageUrl`, `categoryId`, `isAvailable`, and timestamps. Products reference categories by ID rather than copying category names.
+
+Image validation accepts HTTPS URLs only. Firebase Storage uploads are outside the current scope.
