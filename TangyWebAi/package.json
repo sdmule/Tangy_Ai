@@ -12,6 +12,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "seed:emulator": "node scripts/seed.mjs",
+    "seed:firebase": "node scripts/seed.mjs",
     "format": "prettier --write --experimental-cli src/"
   },
   "dependencies": {

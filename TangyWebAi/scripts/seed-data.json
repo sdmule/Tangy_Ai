@@ -1,90 +1,35 @@
 {
   "categories": [
-    { "id": "appetizers", "name": "Appetizers" },
-    { "id": "pasta", "name": "Pasta" },
-    { "id": "pizza", "name": "Pizza" },
-    { "id": "dessert", "name": "Dessert" }
+    { "id": "entree", "name": "Entree" },
+    { "id": "appetizer", "name": "Appetizer" },
+    { "id": "desert", "name": "Desert" }
   ],
   "products": [
+    {
+      "id": "caprese",
+      "name": "Caprese",
+      "description": "Fresh mozzarella, tomatoes, basil, and extra virgin olive oil.",
+      "price": 11.5,
+      "imageUrl": "https://dotnetmasteryimages.blob.core.windows.net/copilot-tangyai-images/Caprese.png",
+      "categoryId": "appetizer",
+      "isAvailable": true
+    },
     {
       "id": "bruschetta",
       "name": "Bruschetta",
       "description": "Toasted bread with tomatoes, basil, garlic, and olive oil.",
       "price": 9.5,
-      "imageUrl": "https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?auto=format&fit=crop&w=1200&q=80",
-      "categoryId": "appetizers",
-      "isAvailable": true
-    },
-    {
-      "id": "caprese",
-      "name": "Caprese",
-      "description": "Fresh mozzarella, tomatoes, basil, and aged balsamic.",
-      "price": 11.5,
-      "imageUrl": "https://images.unsplash.com/photo-1592417817098-8fd3d9ee9a5d?auto=format&fit=crop&w=1200&q=80",
-      "categoryId": "appetizers",
+      "imageUrl": "https://dotnetmasteryimages.blob.core.windows.net/copilot-tangyai-images/Bruschetta.png",
+      "categoryId": "appetizer",
       "isAvailable": true
     },
     {
       "id": "cacio-e-pepe",
       "name": "Cacio e Pepe",
-      "description": "Silky tonnarelli with pecorino Romano and cracked black pepper.",
+      "description": "Silky pasta with pecorino Romano and cracked black pepper.",
       "price": 18,
-      "imageUrl": "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=1200&q=80",
-      "categoryId": "pasta",
-      "isAvailable": true
-    },
-    {
-      "id": "pasta-al-pomodoro",
-      "name": "Pasta al Pomodoro",
-      "description": "House pasta with bright tomato sugo, basil, and parmesan.",
-      "price": 16,
-      "imageUrl": "https://images.unsplash.com/photo-1551892374-ecf8754cf8b0?auto=format&fit=crop&w=1200&q=80",
-      "categoryId": "pasta",
-      "isAvailable": true
-    },
-    {
-      "id": "ravioli-di-spinaci",
-      "name": "Ravioli di Spinaci",
-      "description": "Spinach ricotta ravioli with brown butter and sage.",
-      "price": 19.5,
-      "imageUrl": "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=80",
-      "categoryId": "pasta",
-      "isAvailable": true
-    },
-    {
-      "id": "pesto-genovese",
-      "name": "Pesto Genovese",
-      "description": "Basil pesto, pine nuts, parmesan, and trofie pasta.",
-      "price": 17.5,
-      "imageUrl": "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=1200&q=80",
-      "categoryId": "pasta",
-      "isAvailable": true
-    },
-    {
-      "id": "margherita-pizza",
-      "name": "Margherita Pizza",
-      "description": "San Marzano tomatoes, fior di latte, basil, and olive oil.",
-      "price": 15,
-      "imageUrl": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=1200&q=80",
-      "categoryId": "pizza",
-      "isAvailable": true
-    },
-    {
-      "id": "pesto-pizza",
-      "name": "Pesto Pizza",
-      "description": "Creamy pesto, mozzarella, roasted vegetables, and lemon zest.",
-      "price": 17,
-      "imageUrl": "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1200&q=80",
-      "categoryId": "pizza",
-      "isAvailable": true
-    },
-    {
-      "id": "focaccia",
-      "name": "Focaccia",
-      "description": "Warm rosemary focaccia with sea salt and extra virgin olive oil.",
-      "price": 7,
-      "imageUrl": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=80",
-      "categoryId": "appetizers",
+      "imageUrl": "https://dotnetmasteryimages.blob.core.windows.net/copilot-tangyai-images/Cacio_e_Pepe.png",
+      "categoryId": "entree",
       "isAvailable": true
     },
     {
@@ -92,17 +37,71 @@
       "name": "Cannoli",
       "description": "Crisp pastry shells filled with sweet ricotta and citrus.",
       "price": 8,
-      "imageUrl": "https://images.unsplash.com/photo-1626196341148-64b83e64b6aa?auto=format&fit=crop&w=1200&q=80",
-      "categoryId": "dessert",
+      "imageUrl": "https://dotnetmasteryimages.blob.core.windows.net/copilot-tangyai-images/Cannoli.png",
+      "categoryId": "desert",
+      "isAvailable": true
+    },
+    {
+      "id": "focaccia",
+      "name": "Focaccia",
+      "description": "Warm rosemary focaccia with sea salt and extra virgin olive oil.",
+      "price": 7,
+      "imageUrl": "https://dotnetmasteryimages.blob.core.windows.net/copilot-tangyai-images/Focaccia.png",
+      "categoryId": "appetizer",
+      "isAvailable": true
+    },
+    {
+      "id": "margherita-pizza",
+      "name": "Margherita Pizza",
+      "description": "San Marzano tomatoes, mozzarella, basil, and olive oil.",
+      "price": 15,
+      "imageUrl": "https://dotnetmasteryimages.blob.core.windows.net/copilot-tangyai-images/Margherita_Pizza.png",
+      "categoryId": "entree",
       "isAvailable": true
     },
     {
       "id": "panna-cotta",
       "name": "Panna Cotta",
-      "description": "Vanilla bean panna cotta with seasonal fruit.",
+      "description": "Vanilla bean panna cotta served with seasonal fruit.",
       "price": 8.5,
-      "imageUrl": "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1200&q=80",
-      "categoryId": "dessert",
+      "imageUrl": "https://dotnetmasteryimages.blob.core.windows.net/copilot-tangyai-images/Panna_Cotta.png",
+      "categoryId": "desert",
+      "isAvailable": true
+    },
+    {
+      "id": "pasta-al-pomodoro",
+      "name": "Pasta al Pomodoro",
+      "description": "House pasta with bright tomato sugo, basil, and parmesan.",
+      "price": 16,
+      "imageUrl": "https://dotnetmasteryimages.blob.core.windows.net/copilot-tangyai-images/Pasta_al_Pomodoro.png",
+      "categoryId": "entree",
+      "isAvailable": true
+    },
+    {
+      "id": "pesto-genovese",
+      "name": "Pesto Genovese",
+      "description": "Basil pesto with pine nuts, parmesan, and pasta.",
+      "price": 17.5,
+      "imageUrl": "https://dotnetmasteryimages.blob.core.windows.net/copilot-tangyai-images/Pesto_Genovese.png",
+      "categoryId": "entree",
+      "isAvailable": true
+    },
+    {
+      "id": "pesto-pizza",
+      "name": "Pesto Pizza",
+      "description": "Creamy pesto, mozzarella, roasted vegetables, and lemon zest.",
+      "price": 17,
+      "imageUrl": "https://dotnetmasteryimages.blob.core.windows.net/copilot-tangyai-images/Pesto_Pizza.png",
+      "categoryId": "entree",
+      "isAvailable": true
+    },
+    {
+      "id": "ravioli-di-spinaci",
+      "name": "Ravioli di Spinaci",
+      "description": "Spinach and ricotta ravioli with brown butter and sage.",
+      "price": 19.5,
+      "imageUrl": "https://dotnetmasteryimages.blob.core.windows.net/copilot-tangyai-images/Ravioli_di_Spinaci.png",
+      "categoryId": "entree",
       "isAvailable": true
     },
     {
@@ -110,8 +109,8 @@
       "name": "Tiramisu",
       "description": "Espresso-soaked ladyfingers, mascarpone, and cocoa.",
       "price": 9,
-      "imageUrl": "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=1200&q=80",
-      "categoryId": "dessert",
+      "imageUrl": "https://dotnetmasteryimages.blob.core.windows.net/copilot-tangyai-images/Tiramisu.png",
+      "categoryId": "desert",
       "isAvailable": true
     }
   ]
