@@ -4,7 +4,8 @@ export function validateProduct(input: ProductInput, categories: Category[]): st
   if (!input.name.trim() || !input.description.trim()) return 'Name and description are required.'
   if (!Number.isFinite(input.price) || input.price <= 0) return 'Price must be greater than zero.'
   if (!isHttpsUrl(input.imageUrl)) return 'Image URL must be a valid HTTPS URL.'
-  if (!categories.some((category) => category.id === input.categoryId)) return 'Select an existing category.'
+  if (!categories.some((category) => category.id === input.categoryId))
+    return 'Select an existing category.'
   return null
 }
 
@@ -15,7 +16,12 @@ export function validateCategory(
 ): string | null {
   const normalized = input.name.trim().toLocaleLowerCase()
   if (!normalized) return 'Category name is required.'
-  if (categories.some((category) => category.id !== exceptId && category.name.trim().toLocaleLowerCase() === normalized)) {
+  if (
+    categories.some(
+      (category) =>
+        category.id !== exceptId && category.name.trim().toLocaleLowerCase() === normalized,
+    )
+  ) {
     return 'A category with this name already exists.'
   }
   return null

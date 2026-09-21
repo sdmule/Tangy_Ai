@@ -3,8 +3,24 @@ import { filterProducts } from './productFilters'
 import type { Product } from '@/types/models'
 
 const products: Product[] = [
-  { id: '1', name: 'Cacio e Pepe', description: 'Pecorino and pepper pasta', price: 18, imageUrl: 'https://example.com/pasta.jpg', categoryId: 'pasta', isAvailable: true },
-  { id: '2', name: 'Margherita', description: 'Tomato and basil pizza', price: 15, imageUrl: 'https://example.com/pizza.jpg', categoryId: 'pizza', isAvailable: true },
+  {
+    id: '1',
+    name: 'Cacio e Pepe',
+    description: 'Pecorino and pepper pasta',
+    price: 18,
+    imageUrl: 'https://example.com/pasta.jpg',
+    categoryId: 'pasta',
+    isAvailable: true,
+  },
+  {
+    id: '2',
+    name: 'Margherita',
+    description: 'Tomato and basil pizza',
+    price: 15,
+    imageUrl: 'https://example.com/pizza.jpg',
+    categoryId: 'pizza',
+    isAvailable: true,
+  },
 ]
 
 describe('filterProducts', () => {
