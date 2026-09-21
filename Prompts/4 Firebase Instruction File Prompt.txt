@@ -1,0 +1,3 @@
+Create firebase instructions file which will apply to where we have firebase files.
+
+And can you also make sure to add best practices for firebase there?

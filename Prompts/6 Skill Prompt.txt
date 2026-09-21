@@ -1,0 +1,14 @@
+Create a skill for this project called accessibility-release-review.
+
+Before creating files, inspect the repository to understand its framework, test commands, accessibility tooling, and documentation conventions. Use the skill format supported by this Copilot environment.
+
+The skill should:
+- Explain when to use the workflow
+- Inspect Vue components for keyboard access, labels, focus behavior, and clear error messages
+- Consult a bundled accessibility checklist or reference file
+- Run the repository's relevant validation commands when available
+- Use a consistent report template
+- Keep the review read-only unless the user explicitly asks for fixes
+- State any assumptions and missing tooling
+
+Keep the workflow focused. Do not duplicate the entire repository instruction file or prompt library.

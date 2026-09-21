@@ -1,0 +1,11 @@
+Create a path-specific instruction file for unit tests which will apply to "**/*.test.ts".
+
+Conventions for this project's tests:
+- Vitest as the test runner
+- One behavior per test; describe the behavior in the test name, not the function name
+- Mock the Firebase service layer, never Firestore APIs directly
+- No snapshot tests; assert on rendered text or explicit values
+- Test filtering, search, form validation, and data utilities; do not test framework internals
+- Keep each test file next to the unit it covers
+
+Keep it short and practical.

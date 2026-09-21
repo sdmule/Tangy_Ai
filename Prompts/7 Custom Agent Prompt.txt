@@ -1,0 +1,7 @@
+Inspect this repository and create a custom Copilot agent called Accessibility Review.
+
+The agent should review the application's Vue pages for accessibility issues, use the
+project's existing guidance and validation commands, remain read-only by default, and
+produce clear findings with evidence and recommendations.
+
+Choose the correct custom-agent format and supported location for this Copilot environment.

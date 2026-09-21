@@ -1,0 +1,10 @@
+Create an AGENTS.md file at the root of this project.
+
+Include:
+- A one-paragraph project summary
+- How to install dependencies and run the dev server
+- How to run tests
+- The project's core rule: product and banner images are URL strings only, never file uploads
+- A note that Firebase logic belongs in the service layer, not components
+- Make sure we are not duplicating things with copilot-instructions.md file.
+Keep it tool-agnostic: do not reference GitHub Copilot by name, since other AI tools may read this file too.

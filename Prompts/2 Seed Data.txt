@@ -1,0 +1,14 @@
+I want you to create the tables in firebase and also seed the tables, categories will be Entree, Appetizer and Desert and the products you will create 12 products and following are the image url, Names of product are the image name in the url and can you guess category yourself based on the name and seed that in firebase?
+
+https://dotnetmasteryimages.blob.core.windows.net/copilot-tangyai-images/Caprese.png
+https://dotnetmasteryimages.blob.core.windows.net/copilot-tangyai-images/Bruschetta.png
+https://dotnetmasteryimages.blob.core.windows.net/copilot-tangyai-images/Cacio_e_Pepe.png
+https://dotnetmasteryimages.blob.core.windows.net/copilot-tangyai-images/Cannoli.png
+https://dotnetmasteryimages.blob.core.windows.net/copilot-tangyai-images/Focaccia.png
+https://dotnetmasteryimages.blob.core.windows.net/copilot-tangyai-images/Margherita_Pizza.png
+https://dotnetmasteryimages.blob.core.windows.net/copilot-tangyai-images/Panna_Cotta.png
+https://dotnetmasteryimages.blob.core.windows.net/copilot-tangyai-images/Pasta_al_Pomodoro.png
+https://dotnetmasteryimages.blob.core.windows.net/copilot-tangyai-images/Pesto_Genovese.png
+https://dotnetmasteryimages.blob.core.windows.net/copilot-tangyai-images/Pesto_Pizza.png
+https://dotnetmasteryimages.blob.core.windows.net/copilot-tangyai-images/Ravioli_di_Spinaci.png
+https://dotnetmasteryimages.blob.core.windows.net/copilot-tangyai-images/Tiramisu.png
