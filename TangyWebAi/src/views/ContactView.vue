@@ -168,9 +168,7 @@ function submitMessage() {
               >
                 Send message <Send class="h-4 w-4" aria-hidden="true" />
               </button>
-            </div>
-          </form>
-        </div>
+           
       </div>
     </section>
   </main>
