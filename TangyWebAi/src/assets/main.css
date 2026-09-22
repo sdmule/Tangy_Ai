@@ -3,7 +3,6 @@
 :root {
   font-family: Georgia, 'Times New Roman', serif;
   color: var(--text-heading);
-  background: var(--page-bg);
   --page-bg: #f8f2e8;
   --hero-bg: #efe1cf;
   --surface: #fffaf2;
@@ -106,4 +105,10 @@ button {
 }
 .theme-icon {
   color: var(--text-body);
+}
+.theme-gradient-text,
+.theme-button,
+.theme-chip,
+.theme-chip-active {
+  color: inherit;
 }
