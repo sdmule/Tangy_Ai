@@ -177,14 +177,14 @@ onMounted(async () => {
 <template>
   <main class="mx-auto max-w-7xl px-5 py-10 lg:px-8">
     <div
-      class="mb-8 flex flex-col gap-3 border-b border-[#d9c9b4] pb-8 md:flex-row md:items-end md:justify-between"
+      class="theme-border mb-8 flex flex-col gap-3 border-b pb-8 md:flex-row md:items-end md:justify-between"
     >
       <div>
-        <p class="text-sm font-bold uppercase tracking-[0.2em] text-[#b4532f]">Kitchen desk</p>
-        <h1 class="mt-2 text-4xl font-bold text-[#42291f]">Manage the menu</h1>
+        <p class="theme-accent text-sm font-bold uppercase tracking-[0.2em]">Kitchen desk</p>
+        <h1 class="theme-heading mt-2 text-4xl font-bold">Manage the menu</h1>
       </div>
       <button
-        class="inline-flex items-center gap-2 self-start rounded-lg border border-[#cbb49c] px-4 py-2 font-semibold text-[#684b39] hover:bg-[#efe1cf]"
+        class="theme-border theme-body inline-flex items-center gap-2 self-start rounded-lg border px-4 py-2 font-semibold hover:bg-[var(--surface-muted)]"
         @click="loadData"
       >
         <RefreshCw class="h-4 w-4" /> Refresh
@@ -196,16 +196,16 @@ onMounted(async () => {
     <div v-if="error" class="mb-4 rounded-xl bg-red-50 p-4 text-red-900" role="alert">
       {{ error }}
     </div>
-    <div v-if="loading" class="flex justify-center py-20 text-[#b4532f]">
+    <div v-if="loading" class="theme-accent flex justify-center py-20">
       <LoaderCircle class="h-10 w-10 animate-spin" aria-label="Loading management data" />
     </div>
     <div v-else class="grid gap-8 xl:grid-cols-[1.6fr_1fr]">
-      <section class="rounded-2xl border border-[#e1d2c1] bg-[#fffaf2] p-6">
+      <section class="theme-surface theme-border-subtle rounded-2xl border p-6">
         <div class="mb-5 flex items-center justify-between">
-          <h2 class="text-2xl font-bold text-[#42291f]">Products</h2>
-          <span class="text-sm text-[#684b39]">{{ products.length }} items</span>
+          <h2 class="theme-heading text-2xl font-bold">Products</h2>
+          <span class="theme-body text-sm">{{ products.length }} items</span>
         </div>
-        <form class="grid gap-3 border-b border-[#e1d2c1] pb-6" @submit.prevent="saveProduct">
+        <form class="theme-border-subtle grid gap-3 border-b pb-6" @submit.prevent="saveProduct">
           <input
             v-model="productForm.name"
             aria-label="Product name"
@@ -240,13 +240,13 @@ onMounted(async () => {
             <option v-for="category in categories" :key="category.id" :value="category.id">
               {{ category.name }}
             </option></select
-          ><label class="flex items-center gap-2 text-sm text-[#684b39]"
+          ><label class="theme-body flex items-center gap-2 text-sm"
             ><input v-model="productForm.isAvailable" type="checkbox" /> Available on menu</label
           >
           <div class="flex gap-2">
             <button
               :disabled="busy"
-              class="inline-flex items-center gap-2 rounded-lg bg-[#7d2d21] px-4 py-2 font-bold text-white disabled:opacity-50"
+              class="theme-accent-strong inline-flex items-center gap-2 rounded-lg bg-[var(--accent-strong)] px-4 py-2 font-bold text-[var(--page-bg)] disabled:opacity-50"
               type="submit"
             >
               <Plus v-if="!editingProductId" class="h-4 w-4" /><Pencil v-else class="h-4 w-4" />
@@ -254,7 +254,7 @@ onMounted(async () => {
             ><button
               v-if="editingProductId"
               type="button"
-              class="rounded-lg px-4 py-2 font-semibold text-[#684b39]"
+              class="theme-body rounded-lg px-4 py-2 font-semibold"
               @click="clearProductForm"
             >
               Cancel
@@ -262,30 +262,28 @@ onMounted(async () => {
           </div>
         </form>
         <div class="mt-5 space-y-3">
-          <p v-if="products.length === 0" class="py-8 text-center text-[#684b39]">
-            No products yet.
-          </p>
+          <p v-if="products.length === 0" class="theme-body py-8 text-center">No products yet.</p>
           <div
             v-for="product in products"
             :key="product.id"
-            class="flex items-center justify-between gap-3 border-b border-[#eadfce] pb-3"
+            class="theme-border-subtle flex items-center justify-between gap-3 border-b pb-3"
           >
             <div class="min-w-0">
-              <p class="truncate font-bold text-[#42291f]">{{ product.name }}</p>
-              <p class="text-sm text-[#684b39]">
+              <p class="theme-heading truncate font-bold">{{ product.name }}</p>
+              <p class="theme-body text-sm">
                 ${{ product.price.toFixed(2) }} ·
                 {{ product.isAvailable ? 'Available' : 'Unavailable' }}
               </p>
             </div>
             <div class="flex shrink-0 gap-2">
               <button
-                class="rounded p-2 text-[#684b39] hover:bg-[#efe1cf]"
+                class="theme-body rounded p-2 hover:bg-[var(--surface-muted)]"
                 :aria-label="`Edit ${product.name}`"
                 @click="editProduct(product)"
               >
                 <Pencil class="h-4 w-4" /></button
               ><button
-                class="rounded p-2 text-[#7d2d21] hover:bg-red-50"
+                class="theme-accent-strong rounded p-2 hover:bg-red-50"
                 :aria-label="`Delete ${product.name}`"
                 @click="removeProduct(product)"
               >
@@ -295,9 +293,9 @@ onMounted(async () => {
           </div>
         </div>
       </section>
-      <section class="rounded-2xl border border-[#e1d2c1] bg-[#fffaf2] p-6">
-        <h2 class="mb-5 text-2xl font-bold text-[#42291f]">Categories</h2>
-        <form class="flex gap-2 border-b border-[#e1d2c1] pb-6" @submit.prevent="saveCategory">
+      <section class="theme-surface theme-border-subtle rounded-2xl border p-6">
+        <h2 class="theme-heading mb-5 text-2xl font-bold">Categories</h2>
+        <form class="theme-border-subtle flex gap-2 border-b pb-6" @submit.prevent="saveCategory">
           <input
             v-model="categoryName"
             aria-label="Category name"
@@ -305,31 +303,31 @@ onMounted(async () => {
             class="field min-w-0 flex-1"
           /><button
             :disabled="busy"
-            class="rounded-lg bg-[#7d2d21] p-3 text-white disabled:opacity-50"
+            class="theme-accent-strong rounded-lg bg-[var(--accent-strong)] p-3 text-[var(--page-bg)] disabled:opacity-50"
             :aria-label="editingCategoryId ? 'Update category' : 'Add category'"
           >
             <Plus v-if="!editingCategoryId" class="h-5 w-5" /><Pencil v-else class="h-5 w-5" />
           </button>
         </form>
         <div class="mt-5 space-y-3">
-          <p v-if="categories.length === 0" class="py-8 text-center text-[#684b39]">
+          <p v-if="categories.length === 0" class="theme-body py-8 text-center">
             No categories yet.
           </p>
           <div
             v-for="category in categories"
             :key="category.id"
-            class="flex items-center justify-between border-b border-[#eadfce] pb-3"
+            class="theme-border-subtle flex items-center justify-between border-b pb-3"
           >
-            <span class="font-bold text-[#42291f]">{{ category.name }}</span>
+            <span class="theme-heading font-bold">{{ category.name }}</span>
             <div class="flex gap-2">
               <button
-                class="rounded p-2 text-[#684b39] hover:bg-[#efe1cf]"
+                class="theme-body rounded p-2 hover:bg-[var(--surface-muted)]"
                 :aria-label="`Edit ${category.name}`"
                 @click="editCategory(category)"
               >
                 <Pencil class="h-4 w-4" /></button
               ><button
-                class="rounded p-2 text-[#7d2d21] hover:bg-red-50"
+                class="theme-accent-strong rounded p-2 hover:bg-red-50"
                 :aria-label="`Delete ${category.name}`"
                 @click="removeCategory(category)"
               >
@@ -346,13 +344,14 @@ onMounted(async () => {
 <style scoped>
 .field {
   width: 100%;
-  border: 1px solid #d9c9b4;
+  border: 1px solid var(--border);
   border-radius: 0.75rem;
-  background: #fffaf2;
+  background: var(--surface);
+  color: var(--text-heading);
   padding: 0.7rem 0.9rem;
   outline: none;
 }
 .field:focus {
-  box-shadow: 0 0 0 2px #b4532f;
+  box-shadow: 0 0 0 2px var(--accent);
 }
 </style>

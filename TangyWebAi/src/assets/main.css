@@ -2,10 +2,37 @@
 
 :root {
   font-family: Georgia, 'Times New Roman', serif;
-  color: #2c211b;
-  background: #f8f2e8;
+  color: var(--text-heading);
+  background: var(--page-bg);
+  --page-bg: #f8f2e8;
+  --hero-bg: #efe1cf;
+  --surface: #fffaf2;
+  --surface-muted: #ead9c4;
+  --text-heading: #42291f;
+  --text-body: #684b39;
+  --text-muted: #9a765d;
+  --border: #d9c9b4;
+  --border-subtle: #e1d2c1;
+  --accent: #b4532f;
+  --accent-strong: #7d2d21;
+  --overlay: rgba(44, 33, 27, 0.7);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+}
+
+:root[data-theme='dark'] {
+  --page-bg: #211b18;
+  --hero-bg: #3a2922;
+  --surface: #2d2420;
+  --surface-muted: #4a352a;
+  --text-heading: #fff4e8;
+  --text-body: #e5cfc0;
+  --text-muted: #c49f87;
+  --border: #63483a;
+  --border-subtle: #513b31;
+  --accent: #f08a61;
+  --accent-strong: #ffad86;
+  --overlay: rgba(10, 8, 7, 0.78);
 }
 
 * {
@@ -15,6 +42,11 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  color: var(--text-body);
+  background: var(--page-bg);
+  transition:
+    color 180ms ease,
+    background-color 180ms ease;
 }
 button,
 input,
@@ -24,4 +56,54 @@ textarea {
 }
 button {
   cursor: pointer;
+}
+
+.theme-page {
+  color: var(--text-body);
+  background: var(--page-bg);
+}
+.theme-header,
+.theme-surface {
+  background: var(--surface);
+}
+.theme-header {
+  border-color: var(--border);
+}
+.theme-heading {
+  color: var(--text-heading);
+}
+.theme-body {
+  color: var(--text-body);
+}
+.theme-muted {
+  color: var(--text-muted);
+}
+.theme-accent {
+  color: var(--accent);
+}
+.theme-accent-strong {
+  color: var(--accent-strong);
+}
+.theme-border {
+  border-color: var(--border);
+}
+.theme-border-subtle {
+  border-color: var(--border-subtle);
+}
+.theme-hero {
+  background: var(--hero-bg);
+}
+.theme-surface-muted {
+  background: var(--surface-muted);
+}
+.theme-overlay {
+  background: var(--overlay);
+}
+.theme-input {
+  border-color: var(--border);
+  background: var(--surface);
+  color: var(--text-heading);
+}
+.theme-icon {
+  color: var(--text-body);
 }
