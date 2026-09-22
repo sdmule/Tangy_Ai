@@ -9,5 +9,11 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     include: ['src/**/*.test.ts'],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'html'],
+      include: ['src/utils/**/*.ts', 'src/services/firebaseError.ts'],
+      exclude: ['**/*.test.ts', 'src/types/**'],
+    },
   },
 })

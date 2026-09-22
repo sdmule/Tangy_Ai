@@ -15,6 +15,7 @@ import {
   updateProduct,
 } from '@/services/productService'
 import { getFirebaseErrorMessage } from '@/services/firebaseError'
+import { isCategoryReferenced } from '@/utils/categoryRules'
 import { validateCategory, validateProduct } from '@/utils/validation'
 import type { Category, Product, ProductInput } from '@/types/models'
 
@@ -150,7 +151,7 @@ async function saveCategory() {
 }
 
 async function removeCategory(category: Category) {
-  if (products.value.some((product) => product.categoryId === category.id)) {
+  if (isCategoryReferenced(category.id, products.value)) {
     error.value = 'This category cannot be deleted while products still reference it.'
     return
   }

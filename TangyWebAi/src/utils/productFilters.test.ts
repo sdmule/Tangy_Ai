@@ -37,4 +37,12 @@ describe('filterProducts', () => {
   it('returns every category when all is selected', () => {
     expect(filterProducts(products, '', 'all')).toHaveLength(2)
   })
+
+  it('trims the search term before matching', () => {
+    expect(filterProducts(products, '  pepper  ', 'all')[0]?.name).toBe('Cacio e Pepe')
+  })
+
+  it('returns no products when the search has no match', () => {
+    expect(filterProducts(products, 'lasagna', 'all')).toEqual([])
+  })
 })
