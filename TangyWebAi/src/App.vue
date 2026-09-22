@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { ArrowRight, Moon, Sun } from 'lucide-vue-next'
+import { ArrowRight, Mail, Moon, Sun } from 'lucide-vue-next'
 
 const isDark = ref(false)
 
@@ -37,6 +37,13 @@ onMounted(() => {
             <Sun v-if="isDark" class="h-5 w-5" aria-hidden="true" />
             <Moon v-else class="h-5 w-5" aria-hidden="true" />
           </button>
+          <RouterLink
+            to="/contact"
+            class="theme-body inline-flex items-center gap-1 transition hover:text-[var(--accent)]"
+          >
+            Contact
+            <Mail class="h-4 w-4" aria-hidden="true" />
+          </RouterLink>
           <RouterLink
             to="/admin"
             class="theme-body inline-flex items-center gap-1 transition hover:text-[var(--accent)]"
