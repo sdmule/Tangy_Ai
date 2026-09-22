@@ -11,6 +11,7 @@ const products: Product[] = [
     imageUrl: 'https://example.com/pasta.jpg',
     categoryId: 'pasta',
     isAvailable: true,
+    tag: null,
   },
   {
     id: '2',
@@ -20,6 +21,7 @@ const products: Product[] = [
     imageUrl: 'https://example.com/pizza.jpg',
     categoryId: 'pizza',
     isAvailable: true,
+    tag: null,
   },
 ]
 

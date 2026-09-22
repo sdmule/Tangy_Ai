@@ -34,6 +34,7 @@ const productForm = reactive<ProductInput>({
   imageUrl: '',
   categoryId: '',
   isAvailable: true,
+  tag: '',
 })
 const categoryName = ref('')
 
@@ -58,6 +59,7 @@ function clearProductForm() {
     imageUrl: '',
     categoryId: categories.value[0]?.id ?? '',
     isAvailable: true,
+    tag: '',
   })
 }
 
@@ -70,6 +72,7 @@ function editProduct(product: Product) {
     imageUrl: product.imageUrl,
     categoryId: product.categoryId,
     isAvailable: product.isAvailable,
+    tag: product.tag ?? '',
   })
 }
 
@@ -82,9 +85,10 @@ async function saveProduct() {
     return
   }
   busy.value = true
+  const payload: ProductInput = { ...productForm, tag: productForm.tag?.trim() || null }
   try {
-    if (editingProductId.value) await updateProduct(editingProductId.value, productForm)
-    else await createProduct(productForm)
+    if (editingProductId.value) await updateProduct(editingProductId.value, payload)
+    else await createProduct(payload)
     message.value = editingProductId.value ? 'Product updated.' : 'Product created.'
     clearProductForm()
     await loadData()
@@ -202,52 +206,81 @@ onMounted(async () => {
     </div>
     <div v-else class="grid gap-8 xl:grid-cols-[1.6fr_1fr]">
       <section class="theme-surface theme-border-subtle rounded-2xl border p-6">
-        <div class="mb-5 flex items-center justify-between">
-          <h2 class="theme-heading text-2xl font-bold">Products</h2>
-          <span class="theme-body text-sm">{{ products.length }} items</span>
-        </div>
-        <form class="theme-border-subtle grid gap-3 border-b pb-6" @submit.prevent="saveProduct">
-          <input
-            v-model="productForm.name"
-            aria-label="Product name"
-            placeholder="Product name"
-            class="field"
-          /><textarea
-            v-model="productForm.description"
-            aria-label="Product description"
-            placeholder="Description"
-            rows="2"
-            class="field"
-          />
-          <div class="grid gap-3 sm:grid-cols-2">
-            <input
-              v-model.number="productForm.price"
-              type="number"
-              min="0"
-              step="0.01"
-              aria-label="Product price"
-              placeholder="Price"
-              class="field"
-            /><input
-              v-model="productForm.imageUrl"
-              type="url"
-              aria-label="Image URL"
-              placeholder="HTTPS image URL"
-              class="field"
-            />
+        <div class="mb-5 flex items-start justify-between gap-4">
+          <div>
+            <p class="theme-accent text-xs font-bold uppercase tracking-[0.2em]">Catalog</p>
+            <h2 class="theme-heading mt-1 text-3xl font-bold">Products</h2>
           </div>
-          <select v-model="productForm.categoryId" aria-label="Product category" class="field">
-            <option disabled value="">Choose category</option>
-            <option v-for="category in categories" :key="category.id" :value="category.id">
-              {{ category.name }}
-            </option></select
-          ><label class="theme-body flex items-center gap-2 text-sm"
-            ><input v-model="productForm.isAvailable" type="checkbox" /> Available on menu</label
+          <button
+            type="button"
+            class="inline-flex shrink-0 items-center gap-2 rounded-lg bg-[var(--text-heading)] px-4 py-2 text-sm font-bold text-[var(--page-bg)]"
+            @click="clearProductForm"
+          >
+            <Plus class="h-4 w-4" /> New product
+          </button>
+        </div>
+        <form class="theme-border-subtle grid gap-4 border-b pb-6" @submit.prevent="saveProduct">
+          <div class="grid gap-4 sm:grid-cols-2">
+            <label class="theme-body block text-sm font-semibold"
+              >Name
+              <input
+                v-model="productForm.name"
+                placeholder="Product name"
+                class="field mt-1" /></label
+            ><label class="theme-body block text-sm font-semibold"
+              >Price
+              <input
+                v-model.number="productForm.price"
+                type="number"
+                min="0"
+                step="0.01"
+                placeholder="Price"
+                class="field mt-1"
+            /></label>
+          </div>
+          <label class="theme-body block text-sm font-semibold"
+            >Description
+            <textarea
+              v-model="productForm.description"
+              placeholder="Description"
+              rows="2"
+              class="field mt-1"
+            />
+          </label>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <label class="theme-body block text-sm font-semibold"
+              >Category
+              <select v-model="productForm.categoryId" class="field mt-1">
+                <option disabled value="">Choose category</option>
+                <option v-for="category in categories" :key="category.id" :value="category.id">
+                  {{ category.name }}
+                </option>
+              </select></label
+            ><label class="theme-body block text-sm font-semibold"
+              >Image URL
+              <input
+                v-model="productForm.imageUrl"
+                type="url"
+                placeholder="HTTPS image URL"
+                class="field mt-1"
+            /></label>
+          </div>
+          <label class="theme-body block text-sm font-semibold"
+            >Badge
+            <input
+              v-model="productForm.tag"
+              maxlength="30"
+              placeholder="Optional highlight, e.g. Best Seller"
+              class="field mt-1"
+          /></label>
+          <label class="theme-body flex items-center gap-2 text-sm"
+            ><input v-model="productForm.isAvailable" type="checkbox" /> Available to
+            customers</label
           >
           <div class="flex gap-2">
             <button
               :disabled="busy"
-              class="theme-accent-strong inline-flex items-center gap-2 rounded-lg bg-[var(--accent-strong)] px-4 py-2 font-bold text-[var(--page-bg)] disabled:opacity-50"
+              class="inline-flex items-center gap-2 rounded-lg bg-[var(--accent-strong)] px-4 py-2 font-bold text-[var(--page-bg)] disabled:opacity-50"
               type="submit"
             >
               <Plus v-if="!editingProductId" class="h-4 w-4" /><Pencil v-else class="h-4 w-4" />
@@ -304,7 +337,7 @@ onMounted(async () => {
             class="field min-w-0 flex-1"
           /><button
             :disabled="busy"
-            class="theme-accent-strong rounded-lg bg-[var(--accent-strong)] p-3 text-[var(--page-bg)] disabled:opacity-50"
+            class="rounded-lg bg-[var(--accent-strong)] p-3 text-[var(--page-bg)] disabled:opacity-50"
             :aria-label="editingCategoryId ? 'Update category' : 'Add category'"
           >
             <Plus v-if="!editingCategoryId" class="h-5 w-5" /><Pencil v-else class="h-5 w-5" />

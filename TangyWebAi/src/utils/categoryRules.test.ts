@@ -11,6 +11,7 @@ const products = [
     imageUrl: 'https://example.com/pasta.jpg',
     categoryId: 'entree',
     isAvailable: true,
+    tag: null,
   },
 ] satisfies Product[]
 

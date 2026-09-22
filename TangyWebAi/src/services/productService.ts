@@ -9,7 +9,7 @@ import {
   updateDoc,
   where,
 } from 'firebase/firestore'
-import { db } from '@/firebase/config'
+import { db, ensureAuthenticated } from '@/firebase/config'
 import type { Product, ProductInput } from '@/types/models'
 
 const productsCollection = collection(db, 'products')
@@ -22,6 +22,7 @@ const toProduct = (snapshot: { id: string; data: () => Record<string, unknown> }
   imageUrl: String(snapshot.data().imageUrl ?? ''),
   categoryId: String(snapshot.data().categoryId ?? ''),
   isAvailable: Boolean(snapshot.data().isAvailable),
+  tag: String(snapshot.data().tag ?? '').trim() || null,
   createdAt: snapshot.data().createdAt as Product['createdAt'],
   updatedAt: snapshot.data().updatedAt as Product['updatedAt'],
 })
@@ -37,6 +38,7 @@ export async function listProductsByCategory(categoryId: string): Promise<Produc
 }
 
 export async function createProduct(input: ProductInput): Promise<string> {
+  await ensureAuthenticated()
   const reference = await addDoc(productsCollection, {
     ...input,
     createdAt: serverTimestamp(),
@@ -46,6 +48,7 @@ export async function createProduct(input: ProductInput): Promise<string> {
 }
 
 export async function updateProduct(id: string, input: ProductInput): Promise<void> {
+  await ensureAuthenticated()
   await updateDoc(doc(db, 'products', id), {
     ...input,
     updatedAt: serverTimestamp(),
@@ -53,5 +56,6 @@ export async function updateProduct(id: string, input: ProductInput): Promise<vo
 }
 
 export async function deleteProduct(id: string): Promise<void> {
+  await ensureAuthenticated()
   await deleteDoc(doc(db, 'products', id))
 }

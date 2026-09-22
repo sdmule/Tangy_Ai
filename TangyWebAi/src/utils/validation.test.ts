@@ -10,6 +10,7 @@ const product = {
   imageUrl: 'https://example.com/pasta.jpg',
   categoryId: 'pasta',
   isAvailable: true,
+  tag: null,
 }
 
 describe('validation', () => {
@@ -43,5 +44,19 @@ describe('validation', () => {
 
   it('rejects an empty category name', () => {
     expect(validateCategory({ name: '   ' }, categories)).toContain('required')
+  })
+
+  it('accepts a product with a free-text highlight tag', () => {
+    expect(validateProduct({ ...product, tag: 'Best Seller' }, categories)).toBeNull()
+  })
+
+  it('accepts a product with no highlight tag', () => {
+    expect(validateProduct({ ...product, tag: null }, categories)).toBeNull()
+  })
+
+  it('rejects a highlight tag longer than 30 characters', () => {
+    expect(validateProduct({ ...product, tag: 'a'.repeat(31) }, categories)).toContain(
+      '30 characters',
+    )
   })
 })

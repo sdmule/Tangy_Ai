@@ -15,6 +15,7 @@ export interface Product {
   imageUrl: string
   categoryId: string
   isAvailable: boolean
+  tag: string | null
   createdAt?: Timestamp
   updatedAt?: Timestamp
 }
@@ -26,6 +27,7 @@ export interface ProductInput {
   imageUrl: string
   categoryId: string
   isAvailable: boolean
+  tag: string | null
 }
 
 export interface CategoryInput {

@@ -10,7 +10,7 @@ import {
   updateDoc,
   where,
 } from 'firebase/firestore'
-import { db } from '@/firebase/config'
+import { db, ensureAuthenticated } from '@/firebase/config'
 import type { Category, CategoryInput } from '@/types/models'
 
 const categoriesCollection = collection(db, 'categories')
@@ -37,6 +37,7 @@ export async function categoryNameExists(name: string, exceptId?: string): Promi
 }
 
 export async function createCategory(input: CategoryInput): Promise<string> {
+  await ensureAuthenticated()
   const reference = await addDoc(categoriesCollection, {
     name: input.name.trim(),
     nameNormalized: normalizeName(input.name),
@@ -47,6 +48,7 @@ export async function createCategory(input: CategoryInput): Promise<string> {
 }
 
 export async function updateCategory(id: string, input: CategoryInput): Promise<void> {
+  await ensureAuthenticated()
   await updateDoc(doc(db, 'categories', id), {
     name: input.name.trim(),
     nameNormalized: normalizeName(input.name),
@@ -55,5 +57,6 @@ export async function updateCategory(id: string, input: CategoryInput): Promise<
 }
 
 export async function deleteCategory(id: string): Promise<void> {
+  await ensureAuthenticated()
   await deleteDoc(doc(db, 'categories', id))
 }

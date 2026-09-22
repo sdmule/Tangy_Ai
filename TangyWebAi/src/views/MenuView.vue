@@ -134,7 +134,7 @@ onUnmounted(() => window.removeEventListener('keydown', closeOnEscape))
             />
             <span
               v-if="!product.isAvailable"
-              class="theme-heading absolute left-3 top-3 rounded-full bg-[var(--text-heading)] px-3 py-1 text-xs font-bold text-[var(--page-bg)]"
+              class="absolute left-3 top-3 rounded-full bg-[var(--text-heading)] px-3 py-1 text-xs font-bold text-[var(--page-bg)]"
               >Currently unavailable</span
             >
           </div>
@@ -146,6 +146,11 @@ onUnmounted(() => window.removeEventListener('keydown', closeOnEscape))
                 </p>
                 <h3 class="theme-heading mt-1 text-xl font-bold">{{ product.name }}</h3>
               </div>
+              <span
+                v-if="product.tag"
+                class="theme-accent-strong shrink-0 whitespace-nowrap rounded border border-[var(--accent-strong)] px-2 py-1 text-xs font-bold uppercase tracking-wider"
+                >{{ product.tag }}</span
+              >
               <span class="theme-accent-strong whitespace-nowrap font-bold"
                 >${{ product.price.toFixed(2) }}</span
               >
@@ -183,9 +188,16 @@ onUnmounted(() => window.removeEventListener('keydown', closeOnEscape))
           class="max-h-80 w-full object-cover"
         />
         <div class="p-6 md:p-8">
-          <p class="theme-accent text-sm font-bold uppercase tracking-wider">
-            {{ categoryName(selectedProduct.categoryId) }}
-          </p>
+          <div class="flex items-center justify-between gap-3">
+            <p class="theme-accent text-sm font-bold uppercase tracking-wider">
+              {{ categoryName(selectedProduct.categoryId) }}
+            </p>
+            <span
+              v-if="selectedProduct.tag"
+              class="theme-accent-strong shrink-0 whitespace-nowrap rounded border border-[var(--accent-strong)] px-2 py-1 text-xs font-bold uppercase tracking-wider"
+              >{{ selectedProduct.tag }}</span
+            >
+          </div>
           <h2 class="theme-heading mt-2 text-3xl font-bold">{{ selectedProduct.name }}</h2>
           <p class="theme-body mt-4 text-lg leading-8">{{ selectedProduct.description }}</p>
           <div class="theme-border-subtle mt-6 flex items-center justify-between border-t pt-5">
